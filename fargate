@@ -1,0 +1,23 @@
+ECS EC2
+
+Ecs:- u can run ur containers on cloud
+u have 2 types ec2:- cons on ec2(exit=sting ec2 manchines also could be used)
+control plnae handled by aws ecs
+u manage workder nodes ec2 instancees
+
+Fargate:- serverless(don't need to care of hardware)
+all u wory about number of tasks
+
+task- lowest level of ecs(running instances)
+Task defination: tempplate for ur tasks(ur docker image,mem)
+
+cluster:- grop of cons
+Service:- manages the tasks
+
+
+*****************Lab
+AWS fargate
+ECS-->Create cluster-->choose fargate
+create tasks definations-->ecstaskexecutionrole-->con-image details
+ONce cluster is created go to tasks create tasks with image con port etc.
+got to cluster --add tasks
