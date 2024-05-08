@@ -1,0 +1,81 @@
+with advent of big data
+u need nosqldb
+fully managed cloud db
+Seamless on-demand scaling
+Unlimited COncurrent Read/write
+Single digit millisecond latency
+SUb-microsecond latency with DAX
+
+Demo ENv Setup
+1)setup AWS API user
+IAM
+Aws console not required only programmatic access-->Adminaccess,Dynamodbfull access-->save cred
+windows on local-->env varibales-->+ varibale-->for acces ke id and key value and region
+install nodejs on windows on cme node --version
+browser nodejs from browser LTS
+node --version
+got to vscode the zip file pat u downloaded test.zip
+terminal-->npm install aws-sdk
+node list-table.js
+
+
+Data Normalization
+why :- to efficeintly organize data,eliminate redundant data
+
+Normilization forms
+1)1NF:- elimante repeating groups
+2)2NF:- elimante redundant data,
+3)3NF:-elimate columns that are not dependent on kry
+
+Also this leads to more able creation and since more table created more operations and more compute power is required,so rdbms db doesn't solve this issue if data is huge
+so Nosql db.
+
+AS rdbms db:- not suited for unstrucutred data and big data
+
+**Basics of Nosql db
+
+Dynamodb(Serverless,Nosql,0-adminstration,u don't need any instalaalltion,strat using directly)
+Items(row) attribut(columns)
+in json format
+Primke is comluslory
+has local sec index
+global sec index
+
+tables are top level entities
+use some prefix to nam tables
+
+Data types
+Scalar:- string,number,boolean,binary (exactly one value)
+set typles:- multiple scalar values (string set,number set,binary set, repated value not allowed in set)
+Document typez:_list and map(complex structure)
+Dynamo db charges on RCU and WCU
+
+RCU:- 4KB of data 1 RCU, 1 strong read consitency
+WCU:- 1KB of data 1 WCU, ! write per second
+
+DYnamo db stores data in partitions
+1 partition=10gb o data
+1 partiton=1000wcu or 3000rcu
+table can have 1 or more partitions
+
+when u create a table it will provison partiton based on provisone capacity
+eg:- 500 RCU's and 500 wcu
+
+number of partitons=(500 rcu/3000 + 500/1000wcu)=0.67 which is 1 Pariton
+if run out of memory it will allocate more part
+
+Index:_
+1 Mand prim key=either simple or composite
+based on part key and hash algotiynm it stores data in partiton.
+
+Local Sec indexes and global index
+u sould ave passed part key
+u can pass part key + prim sort key of other column
+
+Local sec index=part key and prim key is on same column
+and sort key is on other colmns
+
+tables could not be renamed if u want to rename create new table and migrate data
+create tables
+
+
