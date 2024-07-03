@@ -6,6 +6,19 @@ Unlimited COncurrent Read/write
 Single digit millisecond latency
 SUb-microsecond latency with DAX
 
+DYnamo db is is serverless,  available on cloud,nosql(db which has big data(huge in volume,veloceity and veriety, high throughput)
+Fast,flexible(structure and unstructure db),cost effective(pay for what u use),highly scalable,fault tolerant,secure.
+Comparison	
+sql	dynamodb
+Tables 	Tables
+Rows	Items
+columns 	attributes
+Primary keys-Muticolumn and optional	Primary keys:- Mandatory ,Minumum 1 and Max 2 attributes
+Indexes	Local Sec Index
+Views 	Global Sec Index
+	
+
+
 Demo ENv Setup
 1)setup AWS API user
 IAM
@@ -42,16 +55,42 @@ has local sec index
 global sec index
 
 tables are top level entities
-use some prefix to nam tables
+use some prefix to nam tables (test.users, test_projects)
+2 regions can have tables with same name.
 
 Data types
-Scalar:- string,number,boolean,binary (exactly one value)
+Scalar:- string(only non-empty values),number,boolean,binary (exactly one value)
 set typles:- multiple scalar values (string set,number set,binary set, repated value not allowed in set)
 Document typez:_list and map(complex structure)
-Dynamo db charges on RCU and WCU
 
-RCU:- 4KB of data 1 RCU, 1 strong read consitency
+
+Dynamo db charges on RCU and WCU
+Dynamo db consisitency model.
+strong read conssitency
+eventual vnsistenyc :- u may get stale data(by default mode)
+eventual consistency is cheaper.
+
+RCU
+1 RCU = 1 strong read consistency read/sec
+1RCU = 2 eventual consistency read/sec
+for 4 kb of data.
+
+1wCU= 1 write 
+RCU:- 4KB of data 1 RCU, 1 strong read consitency and with eveuntaul consistency u require 0.5 RCU
 WCU:- 1KB of data 1 WCU, ! write per second
+
+eg:-
+avg item size is=10kb.
+provicioned capacity=10RCU and 10WCU
+so strong consistency read=4kb*10=40KB/sec.
+eventual consitency=2(4kb*10)=80KB/sec.
+write throughput=1kb*10 KB=10KB
+
+eg2:- to find RCU's to read 10KB of data per sec with strong consistency= 10KB/4KB=2.5(so rounding up to 3 RCSU)
+for eventual consitency=3RCU's *0.5=1.5 RCU's
+Scaling of capacity can happen 4 times in a day.
+
+
 
 DYnamo db stores data in partitions
 1 partition=10gb o data
