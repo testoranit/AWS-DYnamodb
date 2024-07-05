@@ -118,3 +118,40 @@ tables could not be renamed if u want to rename create new table and migrate dat
 create tables
 
 
+****************88null values in dynamo db
+commandline table creaion
+updation.
+
+
+1)setup global tables pool( the participating tables needs to be empty)
+global_td_notes
+prim user_id as string, timestamp as sort key
+uncheck the default settings ad create local sec index prim user_id sort key title
+global sec index note_id sring
+disable autoscaling for now
+rcu 1 wcu 1
+create
+go to global tables tab also enable steams old and new this is prereq
+goto global tabels again and ad region 
+
+2)Autoscaling
+3)streams for data archiving
+
+
+
+On demand backup of table.
+doesn't effect table performance, auto encrypted.
+can only restore it to same region.
+restore to a new table.
+lambda function to create a periodic backup like cron.
+DAta pipleines..supported for few regions can be used to export and import data from dynamodb to s3 and from s3 to dynamodb
+
+if u don't want to use aws datapilines then u can use
+aws dynamodb scan --table-name SourceTable --region ap-south-1 --output json > output.json
+
+aws dynamodb batch-write-item --request-items file://output.json --region us-east-1
+
+or use lambda
+
+
+
