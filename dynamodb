@@ -154,4 +154,34 @@ aws dynamodb batch-write-item --request-items file://output.json --region us-eas
 or use lambda
 
 
+****************
+Creating a Redshift cluster.
+default port:- 5439
+create IAM role (provide REDshift full access and dynamo db full access)
+attach it to readhsift cluster and launch it.
+
+get SQL workbench tool to conect to Redshift.
+create same dynamodb table with same strucutre whic is empty table;
+
+create table td_notes_test_rs(
+user_id varchar(50),
+timestamp int,
+cat varchar(20),
+title varchar(50),
+content varchar(300),
+node_id varchar(50),
+username varchar(50)
+);
+
+on readshift console 
+copy td_notes_test_rs from 'dnamodb://td_notes_test'
+readratio 100
+iam_role 'paste the attached IAM role during cluster creation';
+
+select * from td_notes_test_rs;
+it's done.
+
+*******************************8888888888888
+MOnitoring DYnamodb using cloudwatch.
+
 
